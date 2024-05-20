@@ -1,0 +1,29 @@
+{
+  "name": "fastify-kata",
+  "version": "0.0.0",
+  "description": "Monorepo",
+  "type": "module",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "clean": "rm -rf packages/dist packages/**/dist packages/.tsbuildinfo packages/**/.tsbuildinfo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "",
+  "license": "Unlicense",
+  "dependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "esbuild": "^0.21.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "@types/node": "^20.12.12",
+    "tsx": "^4.10.5",
+    "typescript": "^5.4.5"
+  }
+}

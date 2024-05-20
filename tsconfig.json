@@ -1,0 +1,28 @@
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "isolatedModules": true,
+    "rootDir": "./packages",
+    "baseUrl": "./packages",
+    "declarationMap": true,
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./packages/.tsbuildinfo",
+
+    "verbatimModuleSyntax": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true
+  },
+  "include": [
+    "./packages/**/*"
+  ],
+  "exclude": [
+    "./packages/**/dist/**",
+    "./packages/**/test/**"
+  ]
+}
