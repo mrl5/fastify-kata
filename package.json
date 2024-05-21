@@ -2,31 +2,32 @@
   "name": "fastify-kata",
   "version": "0.0.0",
   "description": "Monorepo",
+  "author": "",
+  "license": "Unlicense",
   "type": "module",
   "private": "true",
+  "engines": {
+    "node": ">=20"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "start:dev": "npm run start:dev --workspace=app | pino-pretty",
+    "start:dev": "ENV=dev npm run start:dev --workspace=app | pino-pretty",
     "build": "./scripts/build-app.js",
     "start": "node dist/app.mjs",
-    "clean": "rm -rf dist packages/dist packages/**/dist packages/.tsbuildinfo packages/**/.tsbuildinfo",
+    "clean": "rm -rf dist packages/dist packages/**/dist packages/.tsbuildinfo packages/**/.tsbuildinfo node_modules packages/**/node_modules",
     "test": "tsx --test --experimental-test-coverage packages/**/*.spec.ts",
     "lint": "biome check --apply packages/**/*.ts && npm run lint:tsc",
     "lint:tsc": "tsc --noEmit --pretty"
   },
-  "engines": {
-    "node": ">=20"
-  },
-  "author": "",
-  "license": "Unlicense",
   "dependencies": {
-    "@fastify/sensible": "^5.6.0",
+    "@fastify/swagger": "^8.14.0",
+    "@scalar/fastify-api-reference": "^1.22.44",
     "@tsconfig/node20": "^20.1.4",
     "esbuild": "^0.21.3",
     "fastify": "^4.27.0",
-    "fastify-plugin": "^4.5.1"
+    "json-schema-to-ts": "^3.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",

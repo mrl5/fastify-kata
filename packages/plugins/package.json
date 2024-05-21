@@ -1,16 +1,17 @@
 {
-  "name": "app",
+  "name": "plugins",
   "version": "1.0.0",
   "type": "module",
+  "main": "index.ts",
   "private": true,
   "scripts": {
-    "start:dev": "tsx watch main.ts",
     "build": "tsc",
     "test": "tsx --test --experimental-test-coverage test/**/*.spec.ts",
-    "lint": "biome check --apply ./**/*.ts && npm run lint:tsc",
+    "lint": "biome check --apply ./*.ts && npm run lint:tsc",
     "lint:tsc": "tsc --noEmit --pretty"
   },
   "dependencies": {
-    "plugins": "1.0.0"
+    "@fastify/sensible": "^5.6.0",
+    "fastify-plugin": "^4.5.1"
   }
 }

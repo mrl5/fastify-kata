@@ -23,4 +23,6 @@ npm run start:dev
 ```
 ```console
 curl -i http://localhost:3000/health
+curl -i http://localhost:3000/openapi.json
+curl -i http://localhost:3000/docs # available only on start:dev
 ```

@@ -1,6 +1,15 @@
+import swagger from '@fastify/swagger';
+import scalarUi from '@scalar/fastify-api-reference';
 import Fastify from 'fastify';
-import sensible from './plugins/sensible.js';
-import { health } from './routes/health.js';
+import { fastifySensible } from 'plugins';
+import { health } from './health.router.js';
+import { getOpenApiSpec } from './oas.js';
+
+const port = 3000;
+const domain = 'localhost';
+const u = new URL(`http://${domain}:${port}`);
+const specPath = '/openapi.json';
+const docsPath = '/docs';
 
 const server = Fastify({
     logger: {
@@ -8,10 +17,19 @@ const server = Fastify({
     },
 });
 
-server.register(sensible);
+server.register(swagger, getOpenApiSpec(u));
+server.get(specPath, async () => {
+    return server.swagger();
+});
+if (process.env.ENV === 'dev') {
+    server.register(scalarUi, { routePrefix: docsPath });
+}
+
+server.register(fastifySensible, { sharedSchemaId: 'HttpError' });
+
 server.register(health, { prefix: '/health' });
 
-server.listen({ port: 3000 }, (err, address) => {
+server.listen({ port }, (err) => {
     if (err) {
         server.log.error(err);
         process.exit(1);

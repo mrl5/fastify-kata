@@ -2,7 +2,7 @@ import * as assert from 'node:assert';
 import { test } from 'node:test';
 import type { TestContext } from 'node:test';
 import Fastify from 'fastify';
-import { health } from '../routes/health.js';
+import { health } from '../health.router.js';
 
 function build(t: TestContext) {
     const app = Fastify({ logger: false });
