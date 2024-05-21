@@ -8,8 +8,13 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "rm -rf packages/dist packages/**/dist packages/.tsbuildinfo packages/**/.tsbuildinfo",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "npm run start:dev --workspace=app | pino-pretty",
+    "build": "./scripts/build-app.js",
+    "start": "node dist/app.mjs",
+    "clean": "rm -rf dist packages/dist packages/**/dist packages/.tsbuildinfo packages/**/.tsbuildinfo",
+    "test": "tsx --test --experimental-test-coverage packages/**/*.spec.ts",
+    "lint": "biome check --apply packages/**/*.ts && npm run lint:tsc",
+    "lint:tsc": "tsc --noEmit --pretty"
   },
   "engines": {
     "node": ">=20"
@@ -17,12 +22,16 @@
   "author": "",
   "license": "Unlicense",
   "dependencies": {
+    "@fastify/sensible": "^5.6.0",
     "@tsconfig/node20": "^20.1.4",
-    "esbuild": "^0.21.3"
+    "esbuild": "^0.21.3",
+    "fastify": "^4.27.0",
+    "fastify-plugin": "^4.5.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
     "@types/node": "^20.12.12",
+    "fastify-cli": "^6.1.1",
     "tsx": "^4.10.5",
     "typescript": "^5.4.5"
   }

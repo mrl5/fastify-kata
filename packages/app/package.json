@@ -1,0 +1,15 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "start:dev": "tsx watch main.ts",
+    "test": "tsx --test --experimental-test-coverage test/**/*.spec.ts",
+    "lint": "biome check --apply ./**/*.ts && npm run lint:tsc",
+    "lint:tsc": "tsc --noEmit --pretty"
+  },
+  "author": "",
+  "license": "Unlicense",
+  "description": ""
+}
