@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start:dev": "tsx watch main.ts",
+    "start:dev": "tsx watch --env-file=../../.env.local main.ts",
     "build": "tsc",
     "test": "tsx --test --experimental-test-coverage test/**/*.spec.ts",
     "lint": "biome check --apply ./**/*.ts && npm run lint:tsc",

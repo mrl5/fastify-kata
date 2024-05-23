@@ -1,9 +1,16 @@
 import type { RouteHandler } from 'fastify';
-import type { HealthRes } from './health.models.js';
+import type { HealthCode, HealthRes } from './health.models.js';
 
 export const getHealthHandler: RouteHandler<{ Reply: HealthRes }> = async (
-    _,
+    req,
     res,
 ) => {
-    res.send({ code: 'healthy' });
+    let code: HealthCode = 'degraded';
+    try {
+        await req.server.sql`SELECT 1`;
+        code = 'healthy';
+    } catch (err) {
+        req.log.error(err);
+    }
+    res.send({ code });
 };

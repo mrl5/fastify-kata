@@ -1,7 +1,8 @@
 import swagger from '@fastify/swagger';
 import scalarUi from '@scalar/fastify-api-reference';
 import Fastify from 'fastify';
-import { fastifySensible } from 'plugins';
+import { fastifyPostgresJs, fastifySensible } from 'plugins';
+import { getDbOptions } from './db.js';
 import { health } from './health.router.js';
 import { getOpenApiSpec } from './oas.js';
 
@@ -17,6 +18,7 @@ const server = Fastify({
     },
 });
 
+server.register(fastifySensible, { sharedSchemaId: 'HttpError' });
 server.register(swagger, getOpenApiSpec(u));
 server.get(specPath, async () => {
     return server.swagger();
@@ -24,9 +26,7 @@ server.get(specPath, async () => {
 if (process.env.ENV === 'dev') {
     server.register(scalarUi, { routePrefix: docsPath });
 }
-
-server.register(fastifySensible, { sharedSchemaId: 'HttpError' });
-
+server.register(fastifyPostgresJs, getDbOptions());
 server.register(health, { prefix: '/health' });
 
 server.listen({ port }, (err) => {

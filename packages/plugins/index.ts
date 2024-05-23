@@ -1,1 +1,2 @@
-export { fastifySensible } from './sensible.js';
+export * from './sensible.js';
+export * from './psql.js';

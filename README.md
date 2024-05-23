@@ -14,6 +14,11 @@ npm run build
 npm run start
 ```
 
+## DB
+```console
+export $(grep -v '^#' .env.local | xargs)
+docker compose up db
+```
 
 ## Dev
 

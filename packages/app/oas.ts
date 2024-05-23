@@ -24,5 +24,5 @@ export function getOpenApiSpec(url: URL): SwaggerOptions {
             },
         },
         hideUntagged: true,
-    }
+    };
 }

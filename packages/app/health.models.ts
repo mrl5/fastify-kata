@@ -6,6 +6,8 @@ export const healthCode = {
     enum: ['healthy', 'degraded'],
 } as const satisfies JSONSchema;
 
+export type HealthCode = FromSchema<typeof healthCode>;
+
 export const healthRes = {
     type: 'object',
     properties: {

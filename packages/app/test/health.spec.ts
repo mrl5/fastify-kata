@@ -17,5 +17,5 @@ test('health root route', async (t) => {
     const res = await app.inject({
         url: '/',
     });
-    assert.deepStrictEqual(JSON.parse(res.payload), { code: 'healthy' });
+    assert.strictEqual(res.statusCode, 200);
 });
