@@ -17,5 +17,9 @@ test('health root route', async (t) => {
     const res = await app.inject({
         url: '/',
     });
+    assert.strictEqual(
+        res.headers['cache-control'],
+        'no-store, no-cache, max-age=0, must-revalidate, proxy-revalidate',
+    );
     assert.strictEqual(res.statusCode, 200);
 });
